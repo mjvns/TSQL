@@ -1,0 +1,35 @@
+-- NULL Numbers = 0
+SELECT Name, ISNULL(TRY_CAST(Size AS Integer),0) AS Numeric Size
+FROM SalesLT.Product;
+
+-- NULL Strings = blank String
+SELECT ProductNumber, ISNULL(Color,'')+','+ISNULL(Size,'') AS ProductDetails
+FROM SalesLT.Product;
+
+-- MULTICOLOR = NULL
+SELECT Name,NULLIF(Color,'Multi') AS SINGLECOLOR
+FROM SalesLT.Product;
+
+-- find first None Null date
+SELECT Name, COALESCE(DIscontinuedDate,SellEndDate,SellStartDate) AS LastActivity
+FROM SalesLT.Product;
+
+--SEARCHED CASE
+SELECT Name,
+            CASE
+              WHEN SellEndDate IS NULL THEN 'OnSale'
+              ELSE 'Discontinued'
+            END AS SalesStatus
+FROM SalesLT.Product;
+
+--Simple Case
+SELECT Name,
+            CASE SIZE
+            WHEN 'S' THEN 'Small'
+            WHEN 'M' THEN 'Medium'
+            WHEN 'L' THEN 'Large'
+            WHEN 'XL' THEN 'XTRA-Large'
+            ELSE
+            ISNULL(Size,'n/a')
+            END AS ProductSize
+FROM SalesLT.Product;                                             
