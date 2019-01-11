@@ -1,0 +1,34 @@
+--Scalar functions
+select YEAR(sellstartdate) sellstartyear,productid,name
+FROM SalesLT.Product
+ORDER BY sellstartyear
+
+select YEAR(sellstartdate) sellstartyear, DATENAME(sellstartdate) sellstartday,
+DATENAME(mm,sellstartdate) sellstartmonth, DATENAME(sellstartdate) sellstartweekday,
+ProductId, Name
+FROM SalesLT.Product 
+ORDER BY sellstartyear;
+
+SELECT DATEDIFF(yy,sellstartdate,GETDATE()) yearsSold, ProductId, Name
+FROM SalesLT.Product
+ORDER BY ProductID;
+
+SELECT UPPER(Name) AS Productname
+FROM SalesLT.Product;
+
+SELECT CONCAT(Firstname + ' ',Lastname) AS Fullname
+FROM SalesLT.Customer;
+
+SELECT Name, ProductNumber, LEFT(ProductNumber,2) AS PRODUCTTYPE 
+FROM SalesLT.Product;
+
+--Query to extract MONTH FROM TODAY'S DATE
+select SUBSTRING(TRY_CAST(getDATE() AS VARCHAR),1,CHARINDEX(' ',TRY_CAST(getDATE() AS VARCHAR)));
+
+--Query to extract DATE FROM TODAY'S DATE
+SELECT SUBSTRING(TRY_CAST(getDate() AS VARCHAR),CHARINDEX(' ',TRY_CAST(getDate() AS VARCHAR))+1,2);
+
+--Another complex Query:
+SELECT NAME,PRODUCTNUMBER,LEFT(PRODUCTNUMBER,2) AS PRODUCTTYPE,
+SUBSTRING(PRODUCTNUMBER,CHARINDEX('-',PRODUCTNUMBER)+1,4) AS MODELCODE,
+
