@@ -1,0 +1,11 @@
+--only distinct rows that appear in both result sets
+
+SELECT countryregion,city FROM HR.Employees
+INTERSECT
+SELECT countryregion,city FROM SALES.Customers
+
+--only distinct rows that appear in the first set but not the second
+
+SELECT countryregion,city FROM HR.Employees
+EXCEPT
+SELECT countryregion,city FROM SALES.Customers 
