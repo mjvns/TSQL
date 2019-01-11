@@ -1,0 +1,3 @@
+SELECT emp.FirstName, prd.Name
+FROM HR.Employee AS emp
+CROSS JOIN Production.Product AS prd;
