@@ -27,4 +27,10 @@ column named ShippingStatus that contains the text “Shipped” for orders with
 “Awaiting Shipment” for orders with no ship date.
 Soln:
 
+select salesorderid, orderdate,
+CASE
+    WHEN Shipdate IS NULL THEN 'Awaiting Shipment'
+    ELSE cast(Shipdate as varchar)
+END AS ShippingStatus
+FROM SalesLT.SalesOrderHeader;
 
