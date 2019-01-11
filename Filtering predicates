@@ -1,0 +1,33 @@
+--LIST INFORMATION ABOUT PRODUCT MODEL 6
+select name, color, size FROM SalesLT.Product WHERE Productmodel = 6;
+
+--LIST INFORMATION ABOUT PRODUCTS THAT HAVE A PRODUCT NUMBER BEGINNING FR
+select productnumber,Name,ListPrice FROM SalesLT.Product WHERE ProductNumber LIKE 'FR%';
+
+--LIST INFORMATION ABOUT PRODUCTS THAT HAVE A PRODUCT NUMBER ENDING WITH 57
+select productnumber,Name,ListPrice FROM SalesLT.Product WHERE ProductNumber LIKE '%57';
+
+--LIST INFORMATION ABOUT PRODUCTS THAT HAVE A PRODUCT NUMBER CONTAINING R
+select productnumber,Name,ListPrice FROM SalesLT.Product WHERE ProductNumber LIKE '%R%';
+
+
+--FILTER THE PREVIOUS QUERY TO ENSURE THAT THE PRODUCT NUMBER CONTAINS TWO SETS OF TWO DIDGETS
+select productnumber,Name,ListPrice FROM SalesLT.Product WHERE ProductNumber LIKE 'FR-_[0-9][0-9]_-[0-9][0-9]';
+
+--FIND PRODUCTS WITH NO SELLENDDATES
+SELECT PRODUCTNUMBER, NAME FROM SalesLT.Product WHERE SellEndDate IS NOT NULL;
+
+--Find products that have a sell end date in 2006
+SELECT Name,Productnumber FROM SalesLT.Product WHERE SellEndDate BETWEEN '2006/1/1' AND '2006/12/31';
+
+--FIND PRODUCTS THAT HAVE A CATEGORY ID OF 5,6 OR 7.
+SELECT Name,ProductNumber FROM SalesLT.Product WHERE ProductCategoryId IN (5,6,7);
+
+--FIND PRODUCTS THAT HAVE A CATEGORY ID OF 5,6 OR 7 AND HAVE A SELLEND DATE
+SELECT Name,ProductNumber FROM SalesLT.Product WHERE ProductCategoryId IN (5,6,7) AND SellEndDate IS NOT NULL;
+
+--FIND PRODUCTS THAT HAVE A CATEGORY ID OF 5,6 OR 7 AND A PRODUCTNUMBER THAT BEGINS FR
+SELECT Name,ProductNumber FROM SalesLT.Product WHERE ProductCategoryId IN (5,6,7) OR ProductCategoryID IN (5,6,7);
+
+
+
