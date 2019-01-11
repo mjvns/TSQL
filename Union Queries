@@ -1,0 +1,15 @@
+--union
+SELECT FirstName, LastName
+FROM SalesLT.Employees
+UNION 
+SELECT FirstName, LastName
+FROM SalesLT.Customers
+ORDER BY Lastname;
+
+--union ALL
+SELECT FirstName, LastName
+FROM SalesLT.Employees
+UNION ALL
+SELECT FirstName, LastName
+FROM SalesLT.Customers
+ORDER BY Lastname;
