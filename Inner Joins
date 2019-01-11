@@ -1,0 +1,24 @@
+--Basic Inner join
+SELECT SalesLT.Product.Name AS ProductName, SalesLT.ProductCategory.Name AS Category
+FROM SalesLT.Product
+INNER JOIN SalesLT.ProductCategory
+ON SalesLT.Product.ProductCategoryID = SalesLT.ProductCategory.ProductCategoryID;
+
+--Table Aliases
+SELECT p.Name AS ProductName, c.Name AS Category
+FROM SalesLT.Product as p
+INNER JOIN SalesLT.ProductCategory as c
+ON p.ProductCategoryId = c.ProductCategoryId;
+
+--Joining more than 2 tables
+SELECT oh.OrderDate, oh.SalesOrderNumber, p.Name AS ProductName, od.Orderquantity, od.UnitPrice, od.LineTotal 
+FROM SalesLT.SalesOrderHeader AS oh
+JOIN 
+SalesLT.SalesOrderDetail AS od
+ON od.SalesOrderID = oh.SalesOrderID
+JOIN SalesLT.Product AS p
+ON od.ProductID = p.PRODUCTID
+ORDER BY oh.OrderDate, oh.SalesOrderID, od.SalesOrderDetailID;
+
+
+
