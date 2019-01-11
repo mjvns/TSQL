@@ -1,0 +1,11 @@
+--ISNUMERIC
+SELECT ISNUMERIC('101.99') AS Is_a_Number;
+
+--IFF
+SELECT productid,listprice,IFF(listprice>50,'high','low') AS PricePoint
+FROM Production.product;
+
+--CHOOSE
+SELECT Productname,color,size,
+    CHOOSE (PRODUCTCATEGORYID,'Bikes','Components','Clothing','Accessories') AS Category
+    FROM Production.product;
