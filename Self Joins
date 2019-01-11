@@ -1,0 +1,6 @@
+SELECT emp.FirstName AS Employee,
+       man.FirstName AS Man,
+       FROM HR.Employee AS emp
+       LEFT JOIN HR.Employee AS man
+       ON emp.ManagerID = man.EmployeeID
+       
