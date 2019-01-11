@@ -1,0 +1,3 @@
+SELECT productcategory as category, productname 
+FROM Production.product
+ORDER BY category, PRICE DESC;
