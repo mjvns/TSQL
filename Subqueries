@@ -1,0 +1,57 @@
+--inner queries pass on results to there corresponding outer queries...
+
+
+--scalar
+SELECT orderid, productid, unitprice, qty
+FROM Sales.OrderDeatils
+WHERE orderid = 
+                (SELECT MAX(orderid) AS lastorder FROM Sales.Orders); 
+                
+--multivalued
+SELECT custid, orderid
+FROM Sales.orders
+WHERE custid IN(
+              select custid
+              FROM Sales.Customers
+              WHERE countryregion = N'Mexico'
+);
+
+
+
+--building subqueries
+
+Step 1:SELECT MAX(UnitPrice) FROM SalesLT.SalesOrderDetail
+
+Step 2:SELECT * FROM SalesLT.Product
+WHERE ListPrice > 1467.01
+
+Step 3:SELECT * FROM SalesLT.Product
+WHERE ListPrice >
+                  (SELECT MAX(UnitPrice) FROM SalesLT.SalesOrderDetail)
+                  
+--correlated subqueries
+select orderid,empid,orderdate
+FROM Sales.Orders AS O1
+WHERE orderdate = (SELECT MAX(ORDERDATE) FROM Sales.Orders AS O2 
+                      WHERE O2.empid = O1.empid)
+ORDER BY empid, orderdate;
+
+--using correlated subqueries
+
+SELECT customerid, salesorderid,orderdate
+FROM SalesLT.SalesOrder AS SO1
+ORDER BY CustomerID, OrderDate
+
+SELECT customerid,salesorderid,orderdate
+FROM SalesLT.SalesOrder AS SO1
+WHERE orderdate = 
+(SELECT MAX(orderdate)
+FROM SalesLT.SalesOrder)
+
+SELECT CustomerID, SalesOrderID, OrderDate
+FROM SalesLT.SalesOrder as SO1
+WHERE orderdate = (SELECT MAX(orderdate) FROM SalesLT.SalesOrder AS SO2
+WHERE SO2.Customerid = SO1.Customerid)
+ORDER BY Customerid;
+
+
