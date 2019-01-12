@@ -1,7 +1,22 @@
+--Window functions:
 SELECT TOP(3) ProductID,Name,ListPrice,
 RANK() OVER(ORDER BY ListPrice DESC) AS RankByPrice
 FROM PRODUCTION.PRODUCT
 ORDER BY RankByPrice;
 
+
+SELECT TOP(100) ProductID,Name,ListPrice,
+RANK() OVER(ORDER BY ListPrice DESC) AS RankByPrice
+FROM Production.Product
+ORDER BY RankByPrice;
+
+
 SELECT c.NAME AS CATEGORY,p.NAME AS Product,ListPrice,
-RANK() OVER(PARTITION BY c.NAME ORDER BY LISTPRICE DESC)
+RANK() OVER(PARTITION BY c.NAME ORDER BY LISTPRICE DESC) AS RankByPrice
+FROM SALESLT.Product AS p
+JOIN SALESLT.ProductCategory AS c
+ON p.ProductCategoryID = c.ProductCategoryID
+ORDERBY Category, RankByPrice;
+
+
+
