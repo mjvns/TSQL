@@ -1,0 +1,26 @@
+SELECT COUNT(*) AS Orderlines,
+SUM(OrderQty*UnitPrice) AS TotalSales
+FROM Sales.OrderDetail;
+
+SELECT COUNT(*) AS Products, COUNT(DISTINCT ProductCategoryID) AS Categories, AVG(ListPrice) AS AveragePrice
+FROM SalesLT.Product;
+
+SELECT COUNT(p.ProductID) BikeModels, AVG(p.ListPrice) AveragePrice
+FROM SALESLT.Product AS p
+JOIN SalesLT.ProductCategory AS c
+ON p.ProductCategoryID = c.PRODUCTCategoryID
+WHERE c.NAME LIKE '%Bikes';
+
+SELECT c.Salesperson, ISNULL(SUM(oh.SubTotal),0.00) SalesRevenue
+FROM SalesLT.Customer c
+LEFT JOIN MSalesLT.SalesOrderHeader oh
+ON c.CUSTOMERID = oh.CustomerID
+GROUP BY c.SALESperson
+ORDER BY SalesRevenue DESC;
+
+SELECT c.Salesperson, CONCAT(c.FirstName+' ',c.LastName) AS Customer, ISNULL(SUM(oh.Subtotal), 0.00) SalesRevenue
+FROM SalesLT.Customer c
+LEFT JOIN SalesLT.SalesOrderHeader oh
+ON c.CUSTOMERID = oh.CUSTOMERID
+GROUP BY c.Salesperson,CONCAT(c.FirstName+' ',c.LastName)
+ORDER BY SalesRevenue DESC, Customer;
