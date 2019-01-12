@@ -1,0 +1,7 @@
+--Display the sales order details for items that are equal to 
+--maximum unit price for that sales order
+
+SELECT SOH.SalesOrderID,MUP.MaxInitPrice
+FROM SalesLT.SalesOrderHeader AS SOH
+CROSS APPLY SalesLT.udfMaxUnitPrice(SOH.SalesOrderID) AS MUP
+ORDER BY SOH.SalesOrderID
