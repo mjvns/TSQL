@@ -1,0 +1,20 @@
+CREATE VIEW SalesLT.vCustomerAddress
+AS
+SELECT C.customerid, FirstName, LastName, AddressLine1, city, StateProvince
+FROM
+SalesLT.Customer C JOIN SalesLT.CustomerAddress CA
+ON C.CustomerID = CA.CustomerID
+JOIN SalesLT.Address A
+ON CA.AddressID = A.AddressID
+
+--Query the View
+SELECT CustomerID, City
+FROM SalesLT.vCustomerAddress
+
+--Join the view to a table
+SELECT c.StateProvince, c.City, ISNULL(SUM(s.TotalDue), 0.00)AS Revenue
+FROM SalesLT.vCustomerAddress AS c
+LEFT JOIN SalesLT.SalesOrderHeader AS s
+ON s.CUSTOMERID = c.CUSTOMERID
+GROUP BY c.StateProvince , c.City
+ORDER BY c.StateProvince, Revenue DESC;
