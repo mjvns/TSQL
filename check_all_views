@@ -1,0 +1,4 @@
+-- Check which views are in Database
+SELECT [SCHEMA_NAME(SCHEMA_ID)] AS [SCHEMA],
+[NAME]
+FROM sys.views;
