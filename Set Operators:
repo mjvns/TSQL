@@ -1,0 +1,50 @@
+SET OPERATORS:Used to combine two or more than two SELECT statements.
+
+RULES------------------------------
+1.) The number of columns must be same in both the SELECT statements.
+2.) The order of columns must be the same.
+3.) Datatypes of the columns must be matched.
+
+EX: CREATE DATABASE TABLE
+    CREATE TABLE EMP_HYD(
+      EMPID INT,
+      ENAME VARCHAR(20),
+      SALARY MONEY
+    )
+    
+    CREATE TABLE EMP_CHENNAI(
+      EMPID INT,
+      ENAME VARCHAR(20),
+      SALARY MONEY
+    )
+    
+ union---------------
+ TO COMBINE THE RESULT OF TWO OR MORE THAN TWO SELECT STATEMENTS AS A SINGLE UNIT OF VALUES WITHOUT DUPLICATE VALUES.
+ 
+ EXAMPLE: SELECT EMPID,ENAME FROM EMP_HYD
+          UNION 
+          SELECT EMPID,ENAME FROM EMP_CHENNAI
+          
+ union all------------------------
+ TO COMBINE THE RESULT OF TWO OR MORE THAN TWO SELECT STATEMENTS AS A SINGLE UNIT OF VALUES WITH DUPLICATE VALUES.
+ 
+ EXAMPLE: SELECT EMPID,ENAME FROM EMP_HYD
+          UNION ALL
+          SELECT EMPID,ENAME FROM EMP_CHENNAI
+          
+intersect-----------------------------
+TO RETURN COMMON VALUES FROM THE TABLES
+
+EXAMPLE:
+          SELECT * FROM EMP_HYD
+          INTERSECT
+          SELECT * FROM EMP_CHENNAI
+          
+          
+except------------------------------------
+TO RETRIEVE THE LEFT SIDE TABLE VALUES WHICH ARE NOT FOUND IN THE RIGHT HAND SIDE TABLE
+
+EXAMPLE:
+          SELECT * FROM EMP_HYD
+          EXCEPT
+          SELECT * FROM EMP_CHENNAI
